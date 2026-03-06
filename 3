@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Student Registration Form</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!--   To use college Bootstrap link/path
+        <link href="http://172.16.34.34/WEB/bootstrap.min.css" rel="stylesheet">
+        -->
+
+        <style>
+            body {
+                background-color: lightblue;
+            }
+        </style>
+
+        <script src="script.js" defer></script>
+    </head>
+
+    <body>
+        <center>
+            <h1><b>Student Registration Form</b></h1>
+        </center>
+
+        <form onsubmit="register(event)" class="container">
+
+            <label>Name</label>
+            <input type="text" id="name" class="form-control">
+            <br>
+
+            <label>Email</label>
+            <input type="email" id="email" class="form-control">
+            <br>
+
+            <label>Mobile</label>
+            <input type="text" id="mobile" class="form-control">
+            <br>
+
+            <label>Date of Birth</label>
+            <input type="date" id="dob" class="form-control">
+            <br>
+
+            <label>Blood Group</label>
+            <select id="bloodGroup" class="form-select">
+                <option value="">Select Blood Group</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>O+</option>
+                <option>O-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+            </select>
+            <br>
+
+            <label>Address</label>
+            <textarea id="address" class="form-control"></textarea>
+            <br>
+
+            <center>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </center>
+ </form>
+
+<script>
+function register() {
+
+    const name    = document.getElementById('name').value;
+    const email   = document.getElementById('email').value;
+    const mobile  = document.getElementById('mobile').value;
+    const dob     = document.getElementById('dob').value;
+    const blood   = document.getElementById('bloodGroup').value;
+    const address = document.getElementById('address').value;
+
+    const patterns = {
+        name: /^[A-Za-z\s]{2,50}$/,
+        email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+        mobile: /^[6-9]\d{9}$/
+    };
+
+    if (!patterns.name.test(name)) {alert("Invalid Name (Only letters, 2-50 characters)"); return; }
+    if (!patterns.email.test(email)) {alert("Invalid Email"); return; }
+    if (!patterns.mobile.test(mobile)) {alert("Invalid Mobile (Must start with 6-9 and contain 10 digits)"); return; }
+    if (!dob) {alert("Please select Date of Birth"); return; }
+    if (!blood) {alert("Please select Blood Group"); return; }
+    if (address.length < 5) {alert("Address must be at least 5 characters"); return; }
+
+    alert(
+        "Registration Successful\n\n" +
+        "Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Mobile: " + mobile + "\n" +
+        "DOB: " + dob + "\n" +
+        "Blood Group: " + blood + "\n" +
+        "Address: " + address
+    );
+}
+</script>
+    </body>
+</html>
+
+
